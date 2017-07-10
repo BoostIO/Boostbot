@@ -4,7 +4,7 @@ const GitHub = require('github-api')
 const PRWebhook = require('./PRWebhook')
 
 const port = process.env.port || 80
-const secret = process.env.WEBHOOK_secret
+const secret = process.env.WEBHOOK_SECRET
 const organizationName = 'BoostIO'
 const repositoryName = 'Boostnote'
 const GitHubAccessToken = process.env.GITHUB_ACCESS_TOKEN
