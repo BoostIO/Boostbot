@@ -1,0 +1,13 @@
+{
+  "name": "Boostbot",
+  "version": "1.0.0",
+  "description": "Bot for Boostnote",
+  "main": "index.js",
+  "repository": "https://github.com/BoostIO/Boostbot",
+  "author": "asmsuechan",
+  "license": "MIT",
+  "dependencies": {
+    "github-api": "^3.0.0",
+    "github-webhook-handler": "^0.6.0"
+  }
+}
