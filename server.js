@@ -22,7 +22,7 @@ http.createServer((req, res) => {
 }).listen(port)
 
 handler.on('error', (err) => {
-  console.error('Error:', err)
+  console.error(`[${new Date()}] Error: ${err}`)
 })
 
 handler.on('pull_request', (event) => {
