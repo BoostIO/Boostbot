@@ -3,21 +3,15 @@ const Repository = GitHub.Repository
 
 class PRWebhook {
   constructor(userName, repositoryName, accessToken) {
-    this.__userName = userName
-    this.__repositoryName = repositoryName
-    this.__accessToken = accessToken
+    const gh = new GitHub({ token: accessToken })
+    this.__repo = gh.getRepo(userName, repositoryName)
+    this.__iss = gh.getIssues(userName, repositoryName)
   }
 
-  warn (number, comment) {
-    const gh = new GitHub({
-      token: this.__accessToken
-    })
-
-    const repo = gh.getRepo(this.__userName, this.__repositoryName)
-    repo.listPullRequestFiles(number).then((prs) => {
+  warnForFiles (number, comment) {
+    this.__repo.listPullRequestFiles(number).then((prs) => {
       if (prs.data.some((pr) => { return pr.filename === 'browser/main/Detail/MarkdownNoteDetail.js' })) {
-        const iss = gh.getIssues(this.__userName, this.__repositoryName)
-        iss.createIssueComment(number, comment)
+        this.__iss.createIssueComment(number, comment)
       }
     })
   }

@@ -29,5 +29,5 @@ handler.on('pull_request', (event) => {
   if (event.payload.action !== 'opened') return
   const webhook = new PRWebhook(organizationName, repositoryName, GitHubAccessToken)
   const comment = 'Be sure to change `browser/main/Detail/SnippetNoteDetail.js`.'
-  webhook.warn(event.payload.number, comment)
+  webhook.warnForFiles(event.payload.number, comment)
 })
