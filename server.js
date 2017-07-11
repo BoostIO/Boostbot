@@ -26,8 +26,12 @@ handler.on('error', (err) => {
 })
 
 handler.on('pull_request', (event) => {
-  if (event.payload.action !== 'opened') return
   const webhook = new PRWebhook(organizationName, repositoryName, GitHubAccessToken)
-  const comment = 'Be sure to change `browser/main/Detail/SnippetNoteDetail.js`.'
-  webhook.warnForFiles(event.payload.number, comment)
+  if (event.payload.action === 'opened') {
+    const comment = 'Be sure to change `browser/main/Detail/SnippetNoteDetail.js`.'
+    webhook.warnForFiles(event.payload.number, comment)
+  } else if (event.payload.action === 'closed' && event.payload.pull_request.merged) {
+    const labels = ['Next Release']
+    webhook.labelOnMerged(event.payload.number, labels)
+  }
 })

@@ -15,6 +15,10 @@ class PRWebhook {
       }
     })
   }
+
+  labelOnMerged (number, label) {
+    this.__iss.addLabel(number, label)
+  }
 }
 
 module.exports = PRWebhook
