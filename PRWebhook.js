@@ -2,22 +2,23 @@ const GitHub = require('github-api')
 const Repository = GitHub.Repository
 
 class PRWebhook {
-  constructor(organization, repository, accessToken) {
+  constructor(organization, repository, number, accessToken) {
     const gh = new GitHub({ token: accessToken })
     this.repo = gh.getRepo(organization, repository)
     this.iss = gh.getIssues(organization, repository)
+    this.number = number
   }
 
-  warnForFiles (number, comment) {
-    this.repo.listPullRequestFiles(number).then((prs) => {
+  warnForFiles (comment) {
+    this.repo.listPullRequestFiles(this.number).then((prs) => {
       if (prs.data.some((pr) => { return pr.filename === 'browser/main/Detail/MarkdownNoteDetail.js' })) {
-        this.iss.createIssueComment(number, comment)
+        this.iss.createIssueComment(this.number, comment)
       }
     })
   }
 
-  labelOnMerged (number, label) {
-    this.iss.addLabel(number, label)
+  labelOnMerged (label) {
+    this.iss.addLabel(this.number, label)
   }
 }
 
