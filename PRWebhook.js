@@ -2,10 +2,10 @@ const GitHub = require('github-api')
 const Repository = GitHub.Repository
 
 class PRWebhook {
-  constructor(userName, repositoryName, accessToken) {
+  constructor(organization, repository, accessToken) {
     const gh = new GitHub({ token: accessToken })
-    this.repo = gh.getRepo(userName, repositoryName)
-    this.iss = gh.getIssues(userName, repositoryName)
+    this.repo = gh.getRepo(organization, repository)
+    this.iss = gh.getIssues(organization, repository)
   }
 
   warnForFiles (number, comment) {

@@ -5,8 +5,8 @@ const PRWebhook = require('./PRWebhook')
 
 const port = process.env.PORT || 80
 const secret = process.env.WEBHOOK_SECRET
-const organizationName = 'BoostIO'
-const repositoryName = 'Boostnote'
+const organization = 'BoostIO'
+const repository = 'Boostnote'
 const GitHubAccessToken = process.env.GITHUB_ACCESS_TOKEN
 
 const handler = createHandler({
@@ -26,7 +26,7 @@ handler.on('error', (err) => {
 })
 
 handler.on('pull_request', (event) => {
-  const webhook = new PRWebhook(organizationName, repositoryName, GitHubAccessToken)
+  const webhook = new PRWebhook(organization, repository, GitHubAccessToken)
   if (event.payload.action === 'opened') {
     const comment = 'Be sure to change `browser/main/Detail/SnippetNoteDetail.js`.'
     webhook.warnForFiles(event.payload.number, comment)
