@@ -7,5 +7,5 @@ You have to obtain a webhook secret key from [here](https://github.com/BoostIO/B
 ```
 $ WEBHOOK_SECRET=<web hook secret key>
 $ GITHUB_ACCESS_TOKEN=<github access token>
-$ node server.js
+$ node server.js >> logfile.log
 ```
