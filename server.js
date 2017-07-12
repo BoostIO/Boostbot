@@ -3,7 +3,7 @@ const createHandler = require('github-webhook-handler')
 const GitHub = require('github-api')
 const PRWebhook = require('./PRWebhook')
 
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8080
 const secret = process.env.WEBHOOK_SECRET
 const organization = 'BoostIO'
 const repository = 'Boostnote'
