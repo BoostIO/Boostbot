@@ -7,6 +7,7 @@
   "author": "asmsuechan",
   "license": "MIT",
   "dependencies": {
+    "@slack/client": "^3.10.0",
     "dotenv": "^4.0.0",
     "forever": "^0.15.3",
     "github-api": "https://github.com/asmsuechan/github.git",
