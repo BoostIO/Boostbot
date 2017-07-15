@@ -2,6 +2,7 @@ const http = require('http')
 const createHandler = require('github-webhook-handler')
 const GitHub = require('github-api')
 const PRWebhook = require('./PRWebhook')
+const slackWebhook = require('./slackWebhook')
 
 require('dotenv').config()
 const port = process.env.PORT || 8080
@@ -9,6 +10,8 @@ const secret = process.env.WEBHOOK_SECRET
 const organization = 'BoostIO'
 const repository = 'Boostnote'
 const GitHubAccessToken = process.env.GITHUB_ACCESS_TOKEN
+const url = process.env.SLACK_WEBHOOK_URL
+const slack = new slackWebhook(url)
 
 const handler = createHandler({
   path: '/',
@@ -31,6 +34,7 @@ handler.on('pull_request', (event) => {
   if (event.payload.action === 'opened') {
     const comment = 'Be sure to be changed `browser/main/Detail/SnippetNoteDetail.js`.'
     webhook.warnForFiles(comment)
+    slack.sendMessage(comment)
   } else if (event.payload.action === 'closed' && event.payload.pull_request.merged) {
     const labels = ['Next Release']
     webhook.labelOnMerged(labels)
