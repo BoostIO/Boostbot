@@ -17,6 +17,7 @@
   "scripts": {
     "start": "forever start server.js",
     "list": "forever list",
-    "stop": "forever stop"
+    "stop": "forever stop",
+    "cron": "forever start dailyCronTask.js"
   }
 }
