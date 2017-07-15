@@ -22,7 +22,7 @@ new CronJob('59 59 23 * * *', () => {
   repo.getDetails().then(res => {
     const starCount = res.data.stargazers_count
     const difference = parseInt(starCount) - parseInt(yesterday)
-    const message = `@here It's time to notice the star counts!\nTotal: ${starCount}\nToday: ${difference}`
+    const message = `@here: It's time to notice the star counts!\nTotal: ${starCount}\nToday: ${difference}`
     slack.sendMessage(message)
     fs.writeFile(filename, starCount)
   })
