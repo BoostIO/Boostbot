@@ -34,7 +34,6 @@ handler.on('pull_request', (event) => {
   if (event.payload.action === 'opened') {
     const comment = 'Be sure to be changed `browser/main/Detail/SnippetNoteDetail.js`.'
     webhook.warnForFiles(comment)
-    slack.sendMessage(comment)
   } else if (event.payload.action === 'closed' && event.payload.pull_request.merged) {
     const labels = ['Next Release']
     webhook.labelOnMerged(labels)
