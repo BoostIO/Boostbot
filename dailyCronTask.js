@@ -10,7 +10,7 @@ const GitHubAccessToken = process.env.GITHUB_ACCESS_TOKEN
 const url = process.env.SLACK_WEBHOOK_URL
 const slack = new slackWebhook(url)
 
-new CronJob('59 59 23 * * *', () => {
+new CronJob('00 59 23 * * *', () => {
   const organization = 'BoostIO'
   const repository = 'Boostnote'
   const gh = new GitHub({ token: GitHubAccessToken })
