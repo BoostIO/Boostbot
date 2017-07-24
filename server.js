@@ -33,7 +33,7 @@ handler.on('pull_request', (event) => {
   const webhook = new PRWebhook(organization, repository, event.payload.number, GitHubAccessToken)
   if (event.payload.action === 'opened') {
     const commentMdNoteDetailFound = 'Be sure to be changed `browser/main/Detail/SnippetNoteDetail.js`.'
-    const commentStylFound = 'Please paste a screenshot when you changed styles"
+    const commentStylFound = 'Please paste a screenshot when you changed styles.'
     webhook.warnByFile('browser/main/Detail/MarkdownNoteDetail.js', commentMdNoteDetailFound)
     webhook.warnByFile('.styl', commentStylFound)
   } else if (event.payload.action === 'closed' && event.payload.pull_request.merged) {
