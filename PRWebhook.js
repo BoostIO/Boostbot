@@ -9,9 +9,9 @@ class PRWebhook {
     this.number = number
   }
 
-  warnForFiles (comment) {
+  warnByFile (file, comment) {
     this.repo.listPullRequestFiles(this.number).then((prs) => {
-      if (prs.data.some((pr) => { return pr.filename === 'browser/main/Detail/MarkdownNoteDetail.js' })) {
+      if (prs.data.some((pr) => { return pr.filename.includes(file) })) {
         this.iss.createIssueComment(this.number, comment)
       }
     })
